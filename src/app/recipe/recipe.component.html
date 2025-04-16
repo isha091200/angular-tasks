@@ -1,0 +1,46 @@
+<!-- <h1>Recipe Book</h1>
+<div class="container">
+  <button (click)="toggleForm()">Add Recipe</button>
+  <br><br>
+
+  <form *ngIf="showForm" (ngSubmit)="submitRecipe()" #recipeForm="ngForm">
+    <input type="text" name="name" placeholder="Recipe Name" [(ngModel)]="newRecipe.name" required>
+    <input type="text" name="description" placeholder="Description" [(ngModel)]="newRecipe.description" required>
+    <input type="text" name="ingredients" placeholder="Ingredients (comma separated)" [(ngModel)]="newRecipe.ingredients" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <hr>
+
+  <div *ngFor="let recipe of recipes" class="recipe-card">
+    <h3>{{ recipe.name }}</h3>
+    <p>{{ recipe.description }}</p>
+    <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+  </div>
+</div> -->
+
+<h1>Recipe Book</h1>
+<div class="container">
+  <button (click)="toggleForm()">Add Recipe</button>
+  <br><br>
+
+  <!-- Recipe Form -->
+  <form *ngIf="showForm" (ngSubmit)="submitRecipe()" #recipeForm="ngForm">
+    <input type="text" name="name" placeholder="Recipe Name" [(ngModel)]="newRecipe.name" required>
+    <input type="text" name="description" placeholder="Description" [(ngModel)]="newRecipe.description" required>
+    <input type="text" name="ingredients" placeholder="Ingredients (comma separated)" [(ngModel)]="newRecipe.ingredients" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <hr>
+
+  <!-- Recipes List -->
+  <div *ngFor="let recipe of recipes; let i = index" class="recipe-card">
+    <h3 (click)="toggleDetails(i)" class="recipe-title">{{ recipe.name }}</h3>
+
+    <div *ngIf="expandedIndex === i">
+      <p>{{ recipe.description }}</p>
+      <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+    </div>
+  </div>
+</div>
